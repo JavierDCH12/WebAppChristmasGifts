@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from utils.services import fetch_books
 
-recommendation_router = APIRouter()
+router = APIRouter()
 
-@recommendation_router.get("/recommendations/books")
+@router.get("/recommendations/books")
 async def get_books_recommendations():
     """
     Devuelve recomendaciones de libros desde la Google Books API.
