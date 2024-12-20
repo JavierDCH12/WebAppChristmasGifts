@@ -12,17 +12,12 @@ async def fetch_books(query="python", limit=10):
     print(f"Requesting URL: {url}")  # Debug log for the requested URL
 
     try:
-        # Use an async HTTP client to make the request
         async with httpx.AsyncClient() as client:
-            response = await client.get(url)  # Perform GET request
-            print(f"Response status: {response.status_code}")  # Log the status code
-            response.raise_for_status()  # Raise an exception for HTTP errors (non-2xx responses)
+            response = await client.get(url)  #
+            response.raise_for_status()
 
-            # Parse the response data into JSON format
             data = response.json()
-            print(f"Response data: {data}")  # Debug log for the raw response data
 
-            # Process the results and extract the necessary fields
             return [
                 {
                     "title": book.get("title", "Unknown Title"),  # Get the book title or default to 'Unknown Title'

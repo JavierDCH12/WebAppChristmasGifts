@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, Query
-from utils.services import fetch_books
+from utils.book_services import fetch_books
 
 # Create an APIRouter instance for book recommendations
-recommendation_router = APIRouter()
+book_recommendation_router = APIRouter()
 
-@recommendation_router.get("/recommendations/books", tags=["Recommendations"])
+@book_recommendation_router.get("/recommendations/books", tags=["Recommendations"])
 async def get_books_recommendations(
     query: str = Query("python", description="Search query for Open Library API"),  # Default query is 'python'
     limit: int = Query(10, ge=1, le=100, description="Maximum number of results to return (1-100)")  # Limit results
