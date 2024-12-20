@@ -1,20 +1,20 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from models.user import User
 from utils.memoryDb import users_db
-from utils.validation import validate_existing_userRegister, validate_existing_emailRegister, validate_passwordRegister, \
-    validate_existing_userLogin, validate_existing_passwordLogin
+from utils.validation import validate_existing_user_register, validate_existing_email_register, validate_password_register, \
+    validate_existing_user_login, validate_existing_password_login
 from utils.security import hash_password
 
 
 
-router = APIRouter()
+auth_router = APIRouter()
 
 
-@router.post("/register")
+@auth_router.post("/register")
 async def register_user(user: User):
-    validate_existing_userRegister(user)
-    validate_existing_emailRegister(user)
-    validate_passwordRegister(user)
+    validate_existing_user_register(user)
+    validate_existing_email_register(user)
+    validate_password_register(user)
 
     user.password = hash_password(user.password)
 
@@ -22,15 +22,15 @@ async def register_user(user: User):
     return {"message": f"User '{user.username}' registered successfully"}
 
 
-@router.post("/login")
+@auth_router.post("/login")
 async def login_user(username: str, passwd: str):
-    validate_existing_userLogin(username)
-    validate_existing_passwordLogin(username, passwd)
+    validate_existing_user_login(username)
+    validate_existing_password_login(username, passwd)
 
     return {"message": f"Welcome back, {username}!"}
 
 
-@router.get("/debug/users")
+@auth_router.get("/debug/users")
 async def get_all_users():
     return users_db
 
