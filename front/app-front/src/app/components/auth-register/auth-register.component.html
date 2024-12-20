@@ -1,1 +1,26 @@
-<p>auth-register works!</p>
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">REGISTER
+        <label>
+            Email:
+            <input type="email" formControlName="email" required>
+            <span *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">Invalid
+                email</span>
+        </label>
+        <label>
+            Password:
+            <input type="password" formControlName="password" required>
+            <span
+                *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">Invalid
+                password</span>
+        </label>
+        <label>
+            Confirm Password:
+            <input type="password" formControlName="confirmPassword" required>
+            <span
+                *ngIf="form.get('confirmPassword')?.invalid && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">Passwords
+                do not match</span>
+        </label>
+        <p *ngIf="registroExitoso">Registration successful</p>
+        <button type="submit">Register</button>
+    </form>
+</div>

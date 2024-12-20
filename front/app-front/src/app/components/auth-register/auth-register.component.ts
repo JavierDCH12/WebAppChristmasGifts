@@ -19,20 +19,37 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class AuthRegisterComponent {
 
   from:FormGroup;
-  successfulRegistration: boolean
+  successfulRegistration: boolean = false;
 
   constructor(
     private userAuthService: UserAuthService,
     private formBuilder: FormBuilder,
-    privat router: Router
+    private router: Router
 
   ){
     this.from = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      username: ['', Validators.required, Validators.minLength(5)],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(12)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(5)]]
     });
     
+  }//CONSTRUCTOR END
+
+
+  onSubmit(){
+    if(this.from.valid){
+      this.userAuthService.registerUser(this.from.value).subscribe((response: any) => {
+        if(response.success){
+          this.successfulRegistration = true;
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000);
+        }
+      });
+    }else{
+      console.log('Form input is invalid');
+    }
   }
 
 }
