@@ -14,6 +14,8 @@ import { UserAuthServiceService } from '../../services/UserAuthService.service';
 export class AuthRegisterComponent {
   form: FormGroup;
   successfulRegistration: boolean = false;
+  backendErrorMessage: string | null = null;
+
 
   constructor(
     private userAuthService: UserAuthServiceService,
@@ -33,33 +35,50 @@ export class AuthRegisterComponent {
     );
   }
 
+
+
+
   passwordsMatch(group: FormGroup): { [key: string]: boolean } | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
   
     if (password !== confirmPassword) {
+      group.get('confirmPassword')?.setErrors({ passwordsDoNotMatch: true });
       return { passwordsDoNotMatch: true }; 
     }
   
     return null; 
   }
   
+  
+
+
 
   // Método que se ejecuta al enviar el formulario
   onSubmit() {
     if (this.form.valid) {
       const { username, email, password } = this.form.value;
-
-      this.userAuthService.registerUser(username, password, email).subscribe((response: any) => {
-        if (response.success) {
-          this.successfulRegistration = true;
+  
+      this.userAuthService.registerUser(username, password, email).subscribe({
+        next: (response) => {
+          this.backendErrorMessage = null; 
+          this.successfulRegistration = true; 
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 2000);
+        },
+        error: (error) => {
+          console.error('Registration error:', error);
+          this.backendErrorMessage = error.message;
         }
       });
     } else {
-      console.log('Form input is invalid');
+      this.backendErrorMessage = 'Please fill out the form correctly.';
     }
   }
+  
+
+
+
+
 }

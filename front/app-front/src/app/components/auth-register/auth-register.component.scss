@@ -57,4 +57,28 @@
       cursor: not-allowed;
     }
   }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .success-message {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  
+  span {
+    color: red;
+    font-size: 12px;
+  }
+
+
+  
+  
 }

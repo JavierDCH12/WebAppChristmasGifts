@@ -6,8 +6,11 @@
       <label>
         Username:
         <input type="text" formControlName="username" required>
-        <span *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)">
-          Username is required and must be at least 5 characters long.
+        <span *ngIf="form.get('username')?.hasError('required') && (form.get('username')?.dirty || form.get('username')?.touched)">
+          Username is required.
+        </span>
+        <span *ngIf="form.get('username')?.hasError('minlength') && (form.get('username')?.dirty || form.get('username')?.touched)">
+          Username must be at least 5 characters long.
         </span>
       </label>
   
@@ -15,8 +18,11 @@
       <label>
         Email:
         <input type="email" formControlName="email" required>
-        <span *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
-          Enter a valid email address.
+        <span *ngIf="form.get('email')?.hasError('required') && (form.get('email')?.dirty || form.get('email')?.touched)">
+          Email is required.
+        </span>
+        <span *ngIf="form.get('email')?.hasError('email') && (form.get('email')?.dirty || form.get('email')?.touched)">
+          Please enter a valid email address.
         </span>
       </label>
   
@@ -24,7 +30,10 @@
       <label>
         Password:
         <input type="password" formControlName="password" required>
-        <span *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
+        <span *ngIf="form.get('password')?.hasError('required') && (form.get('password')?.dirty || form.get('password')?.touched)">
+          Password is required.
+        </span>
+        <span *ngIf="form.get('password')?.hasError('minlength') && (form.get('password')?.dirty || form.get('password')?.touched)">
           Password must be at least 5 characters long.
         </span>
       </label>
@@ -33,13 +42,23 @@
       <label>
         Confirm Password:
         <input type="password" formControlName="confirmPassword" required>
-        <span *ngIf="form.errors?.['passwordsDoNotMatch'] && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">
+        <span *ngIf="form.get('confirmPassword')?.hasError('required') && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">
+          Confirm Password is required.
+        </span>
+        <span *ngIf="form.get('confirmPassword')?.hasError('passwordsDoNotMatch') && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">
           Passwords do not match.
         </span>
       </label>
   
+      <!-- Backend Error Message -->
+      <div *ngIf="backendErrorMessage" class="error-message">
+        {{ backendErrorMessage }}
+      </div>
+  
       <!-- Success Message -->
-      <p *ngIf="successfulRegistration" class="success-message">Registration successful! Redirecting to login...</p>
+      <div *ngIf="successfulRegistration" class="success-message">
+        Registration successful! Redirecting to login...
+      </div>
   
       <!-- Submit Button -->
       <button type="submit" [disabled]="form.invalid">Register</button>
