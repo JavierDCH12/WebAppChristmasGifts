@@ -10,6 +10,7 @@ from utils.security import hash_password
 auth_router = APIRouter()
 
 
+
 @auth_router.post("/register")
 async def register_user(user: User):
     validate_existing_user_register(user)
