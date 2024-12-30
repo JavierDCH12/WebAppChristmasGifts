@@ -1,0 +1,40 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Login</h2>
+  
+      <!-- Username Field -->
+      <label>
+        Username:
+        <input type="text" formControlName="username" required>
+        <span *ngIf="loginForm.get('username')?.hasError('required') && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+          Username is required.
+        </span>
+        <span *ngIf="loginForm.get('username')?.hasError('minlength') && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)">
+          Username must be at least 5 characters long.
+        </span>
+      </label>
+  
+      <!-- Password Field -->
+      <label>
+        Password:
+        <input type="password" formControlName="password" required>
+        <span *ngIf="loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+          Password is required.
+        </span>
+        <span *ngIf="loginForm.get('password')?.hasError('minlength') && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+          Password must be at least 5 characters long.
+        </span>
+      </label>
+  
+      <!-- Backend Error Message -->
+      <div *ngIf="backendErrorMessage" class="error-message">
+        {{ backendErrorMessage }}
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="loginForm.invalid || isSubmitting">
+        {{ isSubmitting ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+  </div>
+  

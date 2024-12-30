@@ -25,7 +25,6 @@ export class UserAuthServiceService {
     return this.http.post(`${environment.apiUrl}/auth/login`, { username, password }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Login error:', error);
-        // Devuelve el mensaje del backend o uno genérico
         return throwError(() => new Error(error.error.detail || 'Invalid username or password.'));
       })
     );
@@ -33,11 +32,7 @@ export class UserAuthServiceService {
   
   
 
+}  
 
+  
 
-
-
-
-
-
-}
