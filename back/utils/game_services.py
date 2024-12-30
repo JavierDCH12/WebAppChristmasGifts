@@ -1,5 +1,5 @@
 import httpx
-from config.config import Config
+from configuration.config import Config
 
 
 async def fetch_games(query="action", limit=10):
