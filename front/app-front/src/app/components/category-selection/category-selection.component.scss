@@ -7,7 +7,22 @@
 
 .category-button {
   margin: 0 10px; /* Space between buttons */
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 15px 30px;
+  font-size: 18px;
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.category-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.category-button:active {
+  background-color: #004494;
+  transform: scale(1);
 }

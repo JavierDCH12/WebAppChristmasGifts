@@ -9,7 +9,7 @@ export const routes: Routes = [
     { path: 'login', component: AuthLoginComponent},
     //{ path: 'home', component: HomeComponent},
     { path: '', redirectTo: 'register' , pathMatch: 'full' },
-    { path: 'category-selections', component: CategorySelectionComponent}
+    { path: 'category-selection', component: CategorySelectionComponent}
 
 
 ];
