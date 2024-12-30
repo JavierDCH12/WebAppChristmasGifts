@@ -19,6 +19,18 @@ export class UserAuthServiceService {
       })
     );
   }
+
+
+  loginUser(username: string, password: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/auth/login`, { username, password }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Login error:', error);
+        // Devuelve el mensaje del backend o uno genérico
+        return throwError(() => new Error(error.error.detail || 'Invalid username or password.'));
+      })
+    );
+  }
+  
   
 
 
