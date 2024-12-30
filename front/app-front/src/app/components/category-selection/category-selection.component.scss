@@ -1,0 +1,13 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.category-button {
+  margin: 0 10px; /* Space between buttons */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

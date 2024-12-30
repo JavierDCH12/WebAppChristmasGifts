@@ -43,7 +43,7 @@ export class AuthLoginComponent {
           this.isSubmitting = false; 
           this.backendErrorMessage = null; 
           console.log('Login successful:', response);
-          //this.router.navigate(['/dashboard']); 
+          this.router.navigate(['/category-selection']); 
         },
         error: (error) => {
           this.isSubmitting = false; 
