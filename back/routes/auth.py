@@ -4,6 +4,7 @@ from utils.memoryDb import users_db
 from utils.validation import validate_existing_user_register, validate_existing_email_register, validate_password_register, \
     validate_existing_user_login, validate_existing_password_login
 from utils.security import hash_password
+from models.schemas import LoginRequest
 
 
 
@@ -24,11 +25,12 @@ async def register_user(user: User):
 
 
 @auth_router.post("/login")
-async def login_user(username: str, passwd: str):
-    validate_existing_user_login(username)
-    validate_existing_password_login(username, passwd)
+async def login_user(request: LoginRequest):
+    validate_existing_user_login(request.username)
+    validate_existing_password_login(request.username, request.passwd)
 
-    return {"message": f"Welcome back, {username}!"}
+    return {"message": f"Welcome back, {request.username}!"}
+
 
 
 @auth_router.get("/debug/users")

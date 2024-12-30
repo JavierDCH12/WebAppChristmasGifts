@@ -10,7 +10,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["http://localhost:4200"], #ALLOW CONNNECTION FROM FRONTEND
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

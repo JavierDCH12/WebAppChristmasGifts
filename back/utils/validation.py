@@ -18,8 +18,8 @@ def validate_existing_email_register(user:User):
             raise HTTPException(status_code=400, detail="Email already registered")
 
 def validate_password_register(user:User):
-    if len(user.password) < 8:
-        raise HTTPException(status_code=400, detail="Password must be at least 8 characters")
+    if len(user.password) < 5:
+        raise HTTPException(status_code=400, detail="Password must be at least 5 characters")
 
 
 
