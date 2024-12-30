@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { RecommendationsService } from '../../services/Recommendations.service';
 
 @Component({
   selector: 'app-book-recommendations',
@@ -9,15 +8,20 @@ import { environment } from '../../../environments/environment';
 })
 export class BookRecommendationsComponent implements OnInit {
   books: any[] = [];
+  errorMessage: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private recommendationsService: RecommendationsService) {}
 
   ngOnInit() {
-    this.http.get(`${environment.apiUrl}/recommendations/books`).subscribe({
+    this.recommendationsService.getBookRecommendations().subscribe({
       next: (response: any) => {
-        this.books = response.recommendations;
+        this.books = response.recommendations || [];
+        this.errorMessage = this.books.length === 0 ? 'No recommendations found.' : null;
       },
-      error: (error) => console.error('Error fetching books:', error)
+      error: (error) => {
+        console.error('Error fetching books:', error);
+        this.errorMessage = 'Failed to load book recommendations.';
+      }
     });
   }
 }
