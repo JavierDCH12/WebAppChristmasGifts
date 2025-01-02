@@ -17,10 +17,20 @@ export class RecommendationsService {
 
   getBookRecommendations(): Observable<any> {
     return this.http.get(`${this.baseUrl}/api/recommendations/books`).pipe(
-      retry(3), // Reintenta hasta 3 veces
+      retry(3), 
       catchError((error) => {
         console.error('Error fetching books:', error);
         return throwError(() => new Error('Failed to fetch books'));
+      })
+    );
+  }
+
+  getGameRecommendations(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/api/recommendations/games`).pipe(
+      retry(3), 
+      catchError((error) => {
+        console.error('Error fetching games:', error);
+        return throwError(() => new Error('Failed to fetch games'));
       })
     );
   }
