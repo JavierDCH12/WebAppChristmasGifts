@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RecommendationsService } from '../../services/Recommendations.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-book-recommendations',
   templateUrl: './book-recommendations.component.html',
-  styleUrls: ['./book-recommendations.component.scss']
+  styleUrls: ['./book-recommendations.component.scss'],
+  imports: [CommonModule]
 })
 export class BookRecommendationsComponent implements OnInit {
   books: any[] = [];

@@ -1,16 +1,18 @@
 <div class="recommendations-container">
-    <h1>Book Recommendations</h1>
-    <div *ngIf="books?.length; else noData">
-      <ul>
-        <li *ngFor="let book of books">
-          <h3>{{ book.name }}</h3>
-          <p>Published: {{ book.publishedDate || 'Unknown' }}</p>
-          <p>Author: {{ book.author || 'Unknown' }}</p>
-        </li>
-      </ul>
-    </div>
-    <ng-template #noData>
-      <p>No recommendations available.</p>
-    </ng-template>
+  <h1>Book Recommendations</h1>
+  <div *ngIf="books?.length; else noData">
+    <ul>
+      <li *ngFor="let book of books" class="book-card">
+        <div class="book-details">
+          <h3>{{ book.title }}</h3>
+          <p><strong>Author:</strong> {{ book.author }}</p>
+          <p><strong>Published:</strong> {{ book.publish_year }}</p>
+          <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        </div>
+      </li>
+    </ul>
   </div>
-  
+  <ng-template #noData>
+    <p>No recommendations available.</p>
+  </ng-template>
+</div>

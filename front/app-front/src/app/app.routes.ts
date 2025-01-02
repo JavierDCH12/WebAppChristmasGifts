@@ -3,6 +3,7 @@ import { AuthRegisterComponent } from './components/auth-register/auth-register.
 import { AuthLoginComponent } from './components/auth-login/auth-login.component';
 import { CategorySelectionComponent } from './components/category-selection/category-selection.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { BookRecommendationsComponent } from './components/book-recommendations/book-recommendations.component';
 
 export const routes: Routes = [
 
@@ -11,7 +12,9 @@ export const routes: Routes = [
     //{ path: 'home', component: HomeComponent},
     { path: '', redirectTo: 'register' , pathMatch: 'full' },
     { path: 'category-selection', component: CategorySelectionComponent},
-    {path: 'recommendations', component: RecommendationsComponent}
+    {path: 'recommendations', component: RecommendationsComponent},
+    {path: 'recommendations/books', component: BookRecommendationsComponent}
+
     
 
 
