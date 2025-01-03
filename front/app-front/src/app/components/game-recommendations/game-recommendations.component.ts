@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { NAVIGATION_ROUTES } from '../../utils/constants';
+
 
 @Component({
   selector: 'app-game-recommendations',
@@ -14,7 +17,7 @@ export class GameRecommendationsComponent implements OnInit {
   errorMessage: string | null = null;
   isLoading: boolean = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.http.get(`${environment.apiUrl}/recommendations/games`).subscribe({
@@ -29,4 +32,9 @@ export class GameRecommendationsComponent implements OnInit {
       }
     });
   }
+
+  navigateToHome() {
+    this.router.navigate([NAVIGATION_ROUTES.HOME]);
+  }
+
 }
