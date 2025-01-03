@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserAuthServiceService } from '../../services/UserAuthService.service';
+import { NAVIGATION_ROUTES } from '../../utils/constants';
 
 @Component({
   selector: 'app-auth-login',
@@ -43,7 +44,7 @@ export class AuthLoginComponent {
           this.isSubmitting = false; 
           this.backendErrorMessage = null; 
           console.log('Login successful:');
-          this.router.navigate(['/home']); 
+          this.router.navigate([NAVIGATION_ROUTES.HOME]); 
         },
         error: (error) => {
           this.isSubmitting = false; 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserAuthServiceService } from '../../services/UserAuthService.service';
+import { NAVIGATION_ROUTES } from '../../utils/constants';
 
 @Component({
   selector: 'app-auth-register',
@@ -64,7 +65,7 @@ export class AuthRegisterComponent {
           this.backendErrorMessage = null; 
           this.successfulRegistration = true; 
           setTimeout(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate([NAVIGATION_ROUTES.LOGIN]);
           }, 2000);
         },
         error: (error) => {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
+import { LOCAL_STORAGE_KEYS } from '../utils/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class UserAuthServiceService {
   loginUser(username: string, password: string): Observable<any> {
     return this.http.post(`${environment.apiUrl}/auth/login`, { username, password }).pipe(
         tap((response: any) => {
-            localStorage.setItem('access_token', response.access_token);
-            localStorage.setItem('username', username);
+          localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, response.access_token);
+          localStorage.setItem(LOCAL_STORAGE_KEYS.USERNAME, username);
         }),
         catchError((error: HttpErrorResponse) => {
             console.error('Login error:', error);
@@ -37,20 +38,21 @@ export class UserAuthServiceService {
 
 
 
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('access_token');
-    return token ? !this.isTokenExpired(token) : false;
-  }
+isAuthenticated(): boolean {
+  const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN);
+  return token ? !this.isTokenExpired(token) : false;
+}
 
-  private isTokenExpired(token: string): boolean {
-    const decoded: any = jwtDecode(token);
-    const now = Math.floor(new Date().getTime() / 1000);
-    return decoded.exp < now;
-  }
+private isTokenExpired(token: string): boolean {
+  const decoded: any = jwtDecode(token);
+  const now = Math.floor(new Date().getTime() / 1000);
+  return decoded.exp < now;
+}
 
-  logout(): void {
-    localStorage.removeItem('access_token');
-  }
+logout(): void {
+  localStorage.removeItem(LOCAL_STORAGE_KEYS.TOKEN);
+  localStorage.removeItem(LOCAL_STORAGE_KEYS.USERNAME); // Limpia también el username
+}
   
   
 

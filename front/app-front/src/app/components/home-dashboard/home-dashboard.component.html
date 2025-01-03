@@ -1,8 +1,13 @@
-<div class="dashboard">
-  <h1>Welcome, {{ username || 'User' }}!</h1>
-  <div class="actions">
-    <button (click)="navigateTo('recommendations/books')">Book Recommendations</button>
-    <button (click)="navigateTo('recommendations/games')">Game Recommendations</button>
-    <button (click)="logout()">Logout</button>
-  </div>
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Home Dashboard</h1>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </header>
+  <nav class="dashboard-nav">
+    <button class="nav-button" (click)="navigateTo(NAVIGATION_ROUTES.RECOMMENDATIONS.BOOKS)">Books</button>
+    <button class="nav-button" (click)="navigateTo(NAVIGATION_ROUTES.RECOMMENDATIONS.GAMES)">Games</button>
+  </nav>
+  <main class="dashboard-content">
+    <p>Welcome to the Home Dashboard, {{ username }}!</p>
+  </main>
 </div>

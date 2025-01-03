@@ -1,5 +1,7 @@
+// home-dashboard.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NAVIGATION_ROUTES, LOCAL_STORAGE_KEYS } from '../../utils/constants';
 
 @Component({
   selector: 'app-home-dashboard',
@@ -8,14 +10,15 @@ import { Router } from '@angular/router';
 })
 export class HomeDashboardComponent {
 
-  username: string | null = localStorage.getItem('username');
+  NAVIGATION_ROUTES = NAVIGATION_ROUTES;
+  username: string | null = localStorage.getItem(LOCAL_STORAGE_KEYS.USERNAME);
 
   constructor(private router: Router) {}
 
   navigateTo(destination: string) {
-    const validDestinations = ['recommendations/books', 'recommendations/games'];
+    const validDestinations = [NAVIGATION_ROUTES.RECOMMENDATIONS.BOOKS, NAVIGATION_ROUTES.RECOMMENDATIONS.GAMES];
     if (validDestinations.includes(destination)) {
-      this.router.navigate([`/${destination}`]);
+      this.router.navigate([destination]);
     } else {
       console.error('Invalid navigation destination');
     }
@@ -23,7 +26,7 @@ export class HomeDashboardComponent {
 
   logout() {
     console.log('Logout clicked');
-    localStorage.clear(); 
-    this.router.navigate(['/login']); 
+    localStorage.clear();
+    this.router.navigate([NAVIGATION_ROUTES.LOGIN]);
   }
 }
