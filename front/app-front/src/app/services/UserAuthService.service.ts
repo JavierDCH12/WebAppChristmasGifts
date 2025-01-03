@@ -26,6 +26,7 @@ export class UserAuthServiceService {
     return this.http.post(`${environment.apiUrl}/auth/login`, { username, password }).pipe(
         tap((response: any) => {
             localStorage.setItem('access_token', response.access_token);
+            localStorage.setItem('username', username);
         }),
         catchError((error: HttpErrorResponse) => {
             console.error('Login error:', error);

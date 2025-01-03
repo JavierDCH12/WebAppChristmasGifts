@@ -17,6 +17,7 @@ ul {
 }
 
 .game-card {
+  display: flex;
   background-color: #fff;
   margin: 10px 0;
   padding: 20px;
@@ -30,8 +31,18 @@ ul {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.game-image {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
 .game-details {
   text-align: left;
+  flex: 1;
 }
 
 .game-details h3 {

@@ -1,18 +1,24 @@
 <div class="recommendations-container">
   <h1>Game Recommendations</h1>
-  <div *ngIf="games?.length; else noData">
-    <ul>
-      <li *ngFor="let game of games" class="game-card">
-        <div class="game-details">
-          <h3>{{ game.title }}</h3>
-          <p><strong>Developer:</strong> {{ game.developer }}</p>
-          <p><strong>Release Year:</strong> {{ game.release_year }}</p>
-          <p><strong>Platform:</strong> {{ game.platform }}</p>
-        </div>
-      </li>
-    </ul>
+  <div *ngIf="isLoading; else content">
+    <p>Games loading...</p>
   </div>
-  <ng-template #noData>
-    <p>No recommendations available.</p>
+  <ng-template #content>
+    <div *ngIf="games?.length; else noData">
+      <ul>
+        <li *ngFor="let game of games" class="game-card">
+          <div class="game-image" [style.backgroundImage]="'url(' + game.background_image + ')'"></div>
+          <div class="game-details">
+            <h3>{{ game.name }}</h3>
+            <p><strong>Released:</strong> {{ game.released }}</p>
+            <p><strong>Rating:</strong> {{ game.rating }}</p>
+            <p><strong>Platforms:</strong> {{ game.platforms.join(', ') }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noData>
+      <p>No recommendations available.</p>
+    </ng-template>
   </ng-template>
 </div>
