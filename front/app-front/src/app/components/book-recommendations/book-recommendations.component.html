@@ -1,19 +1,24 @@
 <div class="recommendations-container">
   <h1>Book Recommendations</h1>
   <button class="back-button" (click)="navigateToHome()">Back to Home</button>
-  <div *ngIf="books?.length; else noData">
-    <ul>
-      <li *ngFor="let book of books" class="book-card">
-        <div class="book-details">
-          <h3>{{ book.title }}</h3>
-          <p><strong>Author:</strong> {{ book.author }}</p>
-          <p><strong>Published:</strong> {{ book.publish_year }}</p>
-          <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-        </div>
-      </li>
-    </ul>
+  <div *ngIf="isLoading; else content">
+    <p>Books loading...</p>
   </div>
-  <ng-template #noData>
-    <p>No recommendations available.</p>
+  <ng-template #content>
+    <div *ngIf="books?.length; else noData">
+      <ul>
+        <li *ngFor="let book of books" class="book-card">
+          <div class="book-details">
+            <h3>{{ book.title }}</h3>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Published:</strong> {{ book.publish_year }}</p>
+            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noData>
+      <p>No recommendations available.</p>
+    </ng-template>
   </ng-template>
 </div>
