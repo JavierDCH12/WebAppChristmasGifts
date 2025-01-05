@@ -20,7 +20,10 @@ export class GameRecommendationsComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.http.get(`${environment.apiUrl}/recommendations/games`).subscribe({
+    const apiUrl = `${environment.apiUrl}/api/recommendations/games`; 
+    console.log(`Requesting URL: ${apiUrl}`);  
+  
+    this.http.get(apiUrl).subscribe({
       next: (response: any) => {
         this.games = response.recommendations;
         this.isLoading = false;

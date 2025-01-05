@@ -19,7 +19,10 @@ export class BookRecommendationsComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.http.get(`${environment.apiUrl}/recommendations/books`).subscribe({
+    const apiUrl = `${environment.apiUrl}/api/recommendations/books`; 
+    console.log(`Requesting URL: ${apiUrl}`);  
+  
+    this.http.get(apiUrl).subscribe({
       next: (response: any) => {
         this.books = response.recommendations;
         this.isLoading = false;

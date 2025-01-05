@@ -16,13 +16,18 @@ export class HomeDashboardComponent {
   constructor(private router: Router) {}
 
   navigateTo(destination: string) {
-    const validDestinations = [NAVIGATION_ROUTES.RECOMMENDATIONS.BOOKS, NAVIGATION_ROUTES.RECOMMENDATIONS.GAMES];
+    const validDestinations = [
+      NAVIGATION_ROUTES.RECOMMENDATIONS.BOOKS,
+      NAVIGATION_ROUTES.RECOMMENDATIONS.GAMES
+    ];
+    
     if (validDestinations.includes(destination)) {
-      this.router.navigate([destination]);
+      this.router.navigateByUrl(destination); 
     } else {
       console.error('Invalid navigation destination');
     }
   }
+  
 
   logout() {
     console.log('Logout clicked');

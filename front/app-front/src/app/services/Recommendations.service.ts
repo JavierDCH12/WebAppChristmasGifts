@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { retry, catchError } from 'rxjs/operators';
 import { throwError as observableThrowError } from 'rxjs';
+import { NAVIGATION_ROUTES } from '../utils/constants';
 
 
 @Injectable({
@@ -16,24 +17,31 @@ export class RecommendationsService {
 
 
   getBookRecommendations(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/recommendations/books`).pipe(
-      retry(3), 
+    const apiUrl = `${this.baseUrl}/api/recommendations/books`;
+    console.log(`Requesting URL: ${apiUrl}`); 
+    return this.http.get(apiUrl).pipe(
+      retry(3),
       catchError((error) => {
         console.error('Error fetching books:', error);
         return throwError(() => new Error('Failed to fetch books'));
       })
     );
   }
+  
+  
 
   getGameRecommendations(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/recommendations/games`).pipe(
-      retry(3), 
+    const apiUrl = `${this.baseUrl}/api/recommendations/games`;
+    console.log(`Requesting URL: ${apiUrl}`); 
+    return this.http.get(apiUrl).pipe(
+      retry(3),
       catchError((error) => {
-        console.error('Error fetching games:', error);
-        return throwError(() => new Error('Failed to fetch games'));
+        console.error('Error fetching videogames:', error);
+        return throwError(() => new Error('Failed to fetch videogames'));
       })
     );
   }
+  
 
 
 }
