@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { SearchService } from '../../services/SearchService.service';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-book-search',
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.scss'],
+  imports: [CommonModule, BrowserModule, FormsModule]
 })
+
+
 export class BookSearchComponent {
   searchParams = { title: '', author: '', category: '' };
   results: any[] = [];

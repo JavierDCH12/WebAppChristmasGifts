@@ -14,7 +14,7 @@ async def search_books_service(title: str = None, author: str = None, category: 
 
     query_string = "&".join(query_params)
     url = f"{base_url}?{query_string}&limit={limit}"
-    print(f"Requesting URL: {url}")  # Para depuración
+    print(f"Requesting URL: {url}")
 
     try:
         async with httpx.AsyncClient() as client:
@@ -22,7 +22,6 @@ async def search_books_service(title: str = None, author: str = None, category: 
             response.raise_for_status()
             data = response.json()
 
-            # Procesar y devolver los resultados relevantes
             return [
                 {
                     "title": book.get("title", "Unknown Title"),

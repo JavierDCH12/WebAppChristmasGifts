@@ -6,6 +6,7 @@ import { RecommendationsComponent } from './components/recommendations/recommend
 import { BookRecommendationsComponent } from './components/book-recommendations/book-recommendations.component';
 import { GameRecommendationsComponent } from './components/game-recommendations/game-recommendations.component';
 import { HomeDashboardComponent } from './components/home-dashboard/home-dashboard.component';
+import { BookSearchComponent } from './components/book-search/book-search.component';
 
 export const routes: Routes = [
 
@@ -17,6 +18,8 @@ export const routes: Routes = [
     {path: 'recommendations/books', component: BookRecommendationsComponent},
     {path: 'recommendations/games', component: GameRecommendationsComponent},
     {path: 'home', component: HomeDashboardComponent},
+    {path: 'search/books', component: BookSearchComponent},
+
 
 
 

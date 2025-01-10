@@ -14,7 +14,8 @@ export class CategorySelectionComponent {
   selectCategory(category: string) {
     localStorage.setItem('selectedCategory', category);
 
-    this.router.navigate([`/recommendations/${category}`]);
+   // this.router.navigate([`/recommendations/${category}`]);
+   this.router.navigate([`/search/books`]);
   }
 
 
