@@ -1,0 +1,32 @@
+<div class="search-container">
+    <h2>Search Books</h2>
+    <form (ngSubmit)="onSearch()" #searchForm="ngForm">
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" [(ngModel)]="searchParams.title" name="title" />
+      </div>
+      <div>
+        <label for="author">Author:</label>
+        <input type="text" id="author" [(ngModel)]="searchParams.author" name="author" />
+      </div>
+      <div>
+        <label for="category">Category:</label>
+        <input type="text" id="category" [(ngModel)]="searchParams.category" name="category" />
+      </div>
+      <button type="submit" [disabled]="!searchForm.valid">Search</button>
+    </form>
+  
+    <div *ngIf="isLoading">Loading...</div>
+    <div *ngIf="results?.length; else noResults">
+      <h3>Search Results:</h3>
+      <ul>
+        <li *ngFor="let book of results">
+          <strong>{{ book.title }}</strong> by {{ book.author }}
+        </li>
+      </ul>
+    </div>
+    <ng-template #noResults>
+      <p>No results found.</p>
+    </ng-template>
+  </div>
+  
