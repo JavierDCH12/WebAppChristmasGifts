@@ -15,7 +15,7 @@
       </div>
       <button type="submit" [disabled]="!searchForm.valid">Search</button>
     </form>
-  
+
     <div *ngIf="isLoading">Loading...</div>
     <div *ngIf="results?.length; else noResults">
       <h3>Search Results:</h3>
