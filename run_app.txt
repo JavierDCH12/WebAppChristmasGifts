@@ -1,0 +1,58 @@
+
+**Commands to Set Up and Run a FastAPI App in a Virtual Environment**
+
+############### **1. Create and Activate the Virtual Environment**
+
+#### For Windows:
+```cmd
+python -m venv venv
+venv\Scripts\activate
+```
+
+---
+
+############### **2. Install Dependencies**
+To install the dependencies, run:
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+############### **3. Run the FastAPI Application**
+
+Assuming your app is in a file named `main.py` and the FastAPI instance is called `app`, use this command:
+```bash
+uvicorn main:app --reload
+```
+
+############### **4. Exit the Virtual Environment**
+When you’re done working, deactivate the virtual environment:
+```bash
+deactivate
+```
+
+---
+
+### **Optional: Useful Commands**
+
+#### **Check Installed Dependencies:**
+```bash
+pip freeze
+```
+
+#### **Update Requirements File:**
+```bash
+pip freeze > requirements.txt
+```
+
+#### **Delete Python Cache:**
+To remove any cached files (e.g., `__pycache__`):
+```bash
+find . -name "__pycache__" -exec rm -rf {} +
+```
+(For Windows, manually delete `__pycache__` folders.)
+
+
+
+
