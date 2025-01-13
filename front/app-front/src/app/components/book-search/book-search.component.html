@@ -1,5 +1,7 @@
 <div class="search-container">
     <h2>Search Books</h2>
+    <button class="back-button" (click)="navigateToHome()">Back to Home</button>
+
     <form (ngSubmit)="onSearch()" #searchForm="ngForm">
       <div>
         <label for="book_title">Title:</label>

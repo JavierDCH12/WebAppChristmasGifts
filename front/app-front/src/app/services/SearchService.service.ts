@@ -12,14 +12,15 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  searchBooks(title: string = '', author: string = '', category: string = ''): Observable<any> {
+  searchBooks(book_title: string = '', book_author: string = '', book_category: string = ''): Observable<any> {
     const params = [];
-    if (title) params.push(`title=${encodeURIComponent(title)}`);
-    if (author) params.push(`author=${encodeURIComponent(author)}`);
-    if (category) params.push(`subject=${encodeURIComponent(category)}`);
+    if (book_title) params.push(`title=${encodeURIComponent(book_title)}`);
+    if (book_author) params.push(`author=${encodeURIComponent(book_author)}`);
+    if (book_category) params.push(`subject=${encodeURIComponent(book_category)}`);
 
-    const queryString = params.join('&');
-    const url = `${this.baseUrl}/books?${queryString}`;
+    const queryString = params.length ? `?${params.join('&')}` : '';
+    const url = `${this.baseUrl}/books${queryString}`;
+
     return this.http.get(url).pipe(
       retry(3),
       catchError(this.handleError)

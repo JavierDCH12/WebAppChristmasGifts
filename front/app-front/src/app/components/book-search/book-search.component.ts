@@ -1,8 +1,10 @@
 import { Component, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchService } from '../../services/SearchService.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { NAVIGATION_ROUTES } from '../../utils/constants';
 
 @Component({
   selector: 'app-book-search',
@@ -17,8 +19,7 @@ export class BookSearchComponent {
   results: any[] = [];
   isLoading = false;
   errorMessage: string | null = null;
-
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private router: Router) {}
 
   onSearch(): void {
     this.isLoading = true;
@@ -37,4 +38,9 @@ export class BookSearchComponent {
       },
     });
   }
+
+
+  navigateToHome() {
+      this.router.navigate([NAVIGATION_ROUTES.HOME]);
+    }
 }
