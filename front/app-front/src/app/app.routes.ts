@@ -18,7 +18,9 @@ export const routes: Routes = [
     {path: 'recommendations/books', component: BookRecommendationsComponent},
     {path: 'recommendations/games', component: GameRecommendationsComponent},
     {path: 'home', component: HomeDashboardComponent},
-    {path: 'search/books', component: BookSearchComponent},
+    {path: 'book-search', component: BookSearchComponent},
+    { path: '**', redirectTo: '/login' },
+
 
 
 

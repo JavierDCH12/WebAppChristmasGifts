@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NAVIGATION_ROUTES } from '../../utils/constants';
 
 @Component({
   selector: 'app-category-selection',
@@ -13,7 +14,7 @@ export class CategorySelectionComponent {
     localStorage.setItem('selectedCategory', category);
 
     if (category === 'book_search') {
-      this.router.navigate(['/book-search']);
+      this.router.navigate([NAVIGATION_ROUTES.SEARCH.BOOKS]);
     } else {
       this.router.navigate([`/recommendations/${category}`]);
     }

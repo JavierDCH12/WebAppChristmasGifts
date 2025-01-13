@@ -8,12 +8,12 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-book-search',
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.scss'],
-  imports: [CommonModule, BrowserModule, FormsModule]
+  imports: [CommonModule, FormsModule]
 })
 
 
 export class BookSearchComponent {
-  searchParams = { title: '', author: '', category: '' };
+  searchParams = { book_title: '', book_author: '', book_category: '' };
   results: any[] = [];
   isLoading = false;
   errorMessage: string | null = null;
@@ -24,8 +24,8 @@ export class BookSearchComponent {
     this.isLoading = true;
     this.errorMessage = null;
 
-    const { title, author, category } = this.searchParams;
-    this.searchService.searchBooks(title, author, category).subscribe({
+    const { book_title, book_author, book_category } = this.searchParams;
+    this.searchService.searchBooks(book_title, book_author, book_category).subscribe({
       next: (response) => {
         this.results = response.recommendations;
         this.isLoading = false;

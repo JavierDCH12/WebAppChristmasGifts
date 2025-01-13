@@ -18,8 +18,10 @@ export class HomeDashboardComponent {
   navigateTo(destination: string) {
     const validDestinations = [
       NAVIGATION_ROUTES.RECOMMENDATIONS.BOOKS,
-      NAVIGATION_ROUTES.RECOMMENDATIONS.GAMES
+      NAVIGATION_ROUTES.RECOMMENDATIONS.GAMES,
+      NAVIGATION_ROUTES.SEARCH.BOOKS,
     ];
+    console.log(NAVIGATION_ROUTES.SEARCH.BOOKS);
     
     if (validDestinations.includes(destination)) {
       this.router.navigateByUrl(destination); 

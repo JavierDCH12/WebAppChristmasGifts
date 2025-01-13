@@ -5,6 +5,10 @@ export const NAVIGATION_ROUTES = {
   RECOMMENDATIONS: {
     BOOKS: '/recommendations/books',
     GAMES: '/recommendations/games'
+  },
+  SEARCH: {
+    BOOKS: '/book-search',
+    GAMES: '/search/games'
   }
 };
 
