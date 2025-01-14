@@ -5,7 +5,7 @@ from utils.security import *
 
 from utils.memoryDb import users_db
 
-from back.utils.security import verify_password
+from utils.security import verify_password
 
 
 def validate_existing_user_register(user:User):

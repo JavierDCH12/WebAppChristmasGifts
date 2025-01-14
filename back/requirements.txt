@@ -1,21 +1,21 @@
 
 # Web framework for building APIs with Python
-fastapi
+fastapi~=0.115.6
 
 # ASGI server for running FastAPI apps
 uvicorn
 
 # Load environment variables from a .env file
-python-dotenv
+python-dotenv~=1.0.1
 
 # Secure password hashing library
-bcrypt
+bcrypt~=4.2.1
 
 # HTTP client for making asynchronous requests
-httpx
+httpx~=0.28.1
 
 # Adds email validation features to Pydantic models
-pydantic[email]
+pydantic[email]~=2.10.5
 
 # Object-Relational Mapping (ORM) for database interactions
 sqlalchemy
@@ -24,7 +24,9 @@ sqlalchemy
 alembic
 
 # Library for JSON Web Tokens (JWT) and cryptographic operations
-python-jose
+python-jose~=3.3.0
 
 # Password hashing library with bcrypt support
 passlib[bcrypt]
+
+starlette~=0.41.3

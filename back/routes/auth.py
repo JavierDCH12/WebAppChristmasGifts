@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 
-import configuration.config
-from models.user import User
+
 from utils.memoryDb import users_db
 from utils.validation import validate_existing_user_register, validate_existing_email_register, validate_password_register, \
     validate_existing_user_login, validate_existing_password_login
@@ -9,6 +8,7 @@ from utils.security import hash_password
 from models.schemas import LoginRequest
 from configuration import token
 
+from models.user import User
 
 auth_router = APIRouter()
 
