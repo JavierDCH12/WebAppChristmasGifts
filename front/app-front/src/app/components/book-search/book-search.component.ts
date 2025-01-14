@@ -28,7 +28,7 @@ export class BookSearchComponent {
     const { book_title, book_author, book_category } = this.searchParams;
     this.searchService.searchBooks(book_title, book_author, book_category).subscribe({
       next: (response) => {
-        this.results = response.recommendations;
+        //this.results = response.recommendations;
         this.isLoading = false;
       },
       error: (error) => {
