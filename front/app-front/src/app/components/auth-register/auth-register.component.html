@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" id="register-form">
       <h2>Register</h2>
   
       <!-- Username Field -->
@@ -63,5 +63,7 @@
       <!-- Submit Button -->
       <button type="submit" [disabled]="form.invalid">Register</button>
     </form>
+
+    <button type="button" (click)="navigateToLogin()" class="login-button">Go to Login</button>
   </div>
   

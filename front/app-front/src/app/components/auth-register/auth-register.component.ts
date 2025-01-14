@@ -77,6 +77,10 @@ export class AuthRegisterComponent {
       this.backendErrorMessage = 'Please fill out the form correctly.';
     }
   }
+
+  navigateToLogin() {
+    this.router.navigate([NAVIGATION_ROUTES.LOGIN]);
+  }
   
 
 
