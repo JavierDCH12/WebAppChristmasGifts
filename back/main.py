@@ -22,7 +22,7 @@ app.include_router(game_recommendation_router, prefix="/api", )
 app.include_router(book_recommendation_router, prefix="/api")
 app.include_router(auth_router, prefix="/auth")
 
-app.include_router(book_search_router, prefix="/search")
+app.include_router(book_search_router, prefix="/api/search")
 
 for route in app.routes:
     print(f"Path: {route.path}, Name: {route.name}, Methods: {route.methods}")

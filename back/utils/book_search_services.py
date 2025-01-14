@@ -20,7 +20,7 @@ async def search_books_service(title: str = None, author: str = None, category: 
     try:
         async with httpx.AsyncClient() as client:
             response = await client.get(url)
-            response.raise_for_status()  # Lanza una excepción si no es 200 OK
+            response.raise_for_status()
             print(f"Response status: {response.status_code}")
 
             data = response.json()
