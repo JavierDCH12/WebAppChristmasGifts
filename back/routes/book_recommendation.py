@@ -17,10 +17,10 @@ async def get_books_recommendations(
     """
     try:
         # Call the fetch_books service to get recommendations
-        recommendations = await fetch_books(query=query, limit=limit)
+        recommendationbooks = await fetch_books(query=query, limit=limit)
         return {
             "category": "book",  # Specify the category of recommendations
-            "recommendations": recommendations  # Return the list of recommended books
+            "recommendationbooks": recommendationbooks  # Return the list of recommended books
         }
     except Exception as e:
         # Handle errors and return a 500 HTTP response with error details

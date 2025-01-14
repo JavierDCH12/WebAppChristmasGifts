@@ -20,14 +20,17 @@ async def search_books(
     try:
         print(f"Received parameters: title={title}, author={author}, category={category}, limit={limit}")
         results = await search_books_service(title=title, author=author, category=category, limit=limit)
-        return {
-            "query": {
-                "title": title,
-                "author": author,
-                "category": category,
-                "limit": limit,
-            },
-            "results": results,
-        }
+        """ return {
+                    "query": {
+                        "title": title,
+                        "author": author,
+                        "category": category,
+                        "limit": limit,
+                    },
+                    "results": results,
+                }"""
+        return {"results": results}
+
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

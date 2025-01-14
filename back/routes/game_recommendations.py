@@ -20,10 +20,10 @@ async def get_games_recommendations(
     """
     try:
         # Call the fetch_games service to get recommendations
-        recommendations = await fetch_games(query=query, limit=limit)
+        recommendationsGAME = await fetch_games(query=query, limit=limit)
         return {
             "category": "game",  # Specify the category of recommendations
-            "recommendations": recommendations  # Return the list of recommended games
+            "recommendationsGAME": recommendationsGAME  # Return the list of recommended games
         }
     except Exception as e:
         # Handle errors and return a 500 HTTP response with error details
