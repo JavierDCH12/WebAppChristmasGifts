@@ -1,0 +1,84 @@
+.search-containera {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0,u 0.1);
+}
+
+.search-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.search-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.error-message {
+  color: #ff4d4d;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.game-title {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.game-developer {
+  font-size: 1em;
+  color: #777;
+}
+
+.game-details {
+  font-size: 0.9em;
+  color: #555;
+
+  p {
+    margin: 5px 0;
+  }
+}
+
+.no-results {
+  text-align: center;
+  font-size: 1.2em;
+  color: #666;
+}

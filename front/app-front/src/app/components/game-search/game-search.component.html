@@ -1,1 +1,75 @@
-<p>game-search works!</p>
+<div class="game-search-container">
+    <h2>Game Search</h2>
+  
+    <!-- Buttons to toggle search type -->
+    <div class="search-toggle">
+      <button 
+        (click)="searchType = 'title'" 
+        [class.active]="searchType === 'title'">
+        Search by Title
+      </button>
+      <button 
+        (click)="searchType = 'genre'" 
+        [class.active]="searchType === 'genre'">
+        Search by Genre
+      </button>
+    </div>
+  
+    <!-- Form for game search -->
+    <form (ngSubmit)="onSearch()" #searchForm="ngForm">
+      <!-- Input for Title Search -->
+      <div *ngIf="searchType === 'title'">
+        <label for="game_title">Game Title:</label>
+        <input 
+          type="text" 
+          id="game_title" 
+          [(ngModel)]="searchParams.game_name" 
+          name="game_name" 
+          required
+          placeholder="Enter game title">
+      </div>
+  
+      <!-- Input for Genre Search -->
+      <div *ngIf="searchType === 'genre'">
+        <label for="game_genre">Game Genre:</label>
+        <input 
+          type="text" 
+          id="game_genre" 
+          [(ngModel)]="searchParams.game_genre" 
+          name="game_genre" 
+          required
+          placeholder="Enter game genre">
+      </div>
+  
+      <button type="submit" [disabled]="!searchForm.valid">Search</button>
+    </form>
+  
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading">Loading...</div>
+  
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  
+    <!-- Results Section -->
+    <div *ngIf="results.length > 0; else noResults">
+      <h3>Search Results:</h3>
+      <ul>
+        <li *ngFor="let game of results">
+          <h4>{{ game.name }}</h4>
+          <p><strong>Released:</strong> {{ game.released }}</p>
+          <p><strong>Rating:</strong> {{ game.rating }}</p>
+          <p><strong>Platforms:</strong> {{ game.platforms.join(', ') }}</p>
+          <img 
+            *ngIf="game.background_image" 
+            [src]="game.background_image" 
+            alt="Background image for {{ game.name }}">
+        </li>
+      </ul>
+    </div>
+  
+    <!-- No Results Template -->
+    <ng-template #noResults>
+      <div>No results found. Try another search!</div>
+    </ng-template>
+  </div>
+  

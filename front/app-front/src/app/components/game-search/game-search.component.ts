@@ -1,18 +1,24 @@
 import { Component } from '@angular/core';
 import { NAVIGATION_ROUTES } from '../../utils/constants';
-import { SearchService } from '../../services/SearchService.service';
+import { Game, SearchService } from '../../services/SearchService.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-game-search',
-  imports: [],
   templateUrl: './game-search.component.html',
-  styleUrl: './game-search.component.scss'
+  styleUrls: ['./game-search.component.scss'],
+  imports: [CommonModule, FormsModule]
 })
 export class GameSearchComponent {
-  searchParams = { book_title: '', book_author: '', book_category: '' };
+  searchParams = { game_name: '', game_genre: '', game_platform: '' };
   results: Game[] = []; 
   isLoading = false;
   errorMessage: string | null = null;
+
+  // Declare and initialize searchType
+  searchType: 'title' | 'genre' = 'title'; // Default to 'title'
 
   constructor(private searchService: SearchService, private router: Router) {}
 
@@ -20,15 +26,14 @@ export class GameSearchComponent {
     this.isLoading = true;
     this.errorMessage = null;
 
-    const { book_title, book_author, book_category } = this.searchParams;
+    const { game_name, game_genre, game_platform } = this.searchParams;
 
-    this.searchService.searchGames(book_title, book_author, book_category).subscribe({
-      next: (response) => {
+    this.searchService.searchGames(game_name, game_genre, game_platform).subscribe({
+      next: (response: Game[]) => { // Ensure TypeScript knows this is Game[]
         console.log('Response from backend:', response);
-        this.results = Array.isArray(response) ? response : response.results || [];
+        this.results = response; // response is directly of type Game[]
         this.isLoading = false;
         console.log('Processed Results:', this.results);
-
       },
       error: (error) => {
         console.error('Error fetching games:', error);
@@ -42,4 +47,3 @@ export class GameSearchComponent {
     this.router.navigate([NAVIGATION_ROUTES.HOME]);
   }
 }
-

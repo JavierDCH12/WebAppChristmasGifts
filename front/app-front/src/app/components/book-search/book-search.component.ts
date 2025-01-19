@@ -26,12 +26,11 @@ export class BookSearchComponent {
     const { book_title, book_author, book_category } = this.searchParams;
 
     this.searchService.searchBooks(book_title, book_author, book_category).subscribe({
-      next: (response) => {
+      next: (response: Book[]) => {
         console.log('Response from backend:', response);
-        this.results = Array.isArray(response) ? response : response.results || [];
+        this.results = response;
         this.isLoading = false;
         console.log('Processed Results:', this.results);
-
       },
       error: (error) => {
         console.error('Error fetching books:', error);

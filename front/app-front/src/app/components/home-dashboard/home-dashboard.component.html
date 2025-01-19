@@ -4,8 +4,7 @@
     <button class="logout-button" (click)="logout()">Logout</button>
   </header>
   <nav class="dashboard-nav">
-    <button class="nav-button" (click)="navigateTo(NAVIGATION_ROUTES.RECOMMENDATIONS.BOOKS)">Books</button>
-    <button class="nav-button" (click)="navigateTo(NAVIGATION_ROUTES.RECOMMENDATIONS.GAMES)">Games</button>
+    <button class="nav-button" (click)="navigateTo(NAVIGATION_ROUTES.SEARCH.GAMES)">Search Games</button>
     <button class="nav-button" (click)="navigateTo(NAVIGATION_ROUTES.SEARCH.BOOKS)">Search books</button>
     
 
@@ -13,6 +12,6 @@
 
   </nav>
   <main class="dashboard-content">
-    <p>Welcome to the Home Dashboard, {{ username }}!</p>
+    <p>Welcome to your Home Dashboard, {{ username }}!</p>
   </main>
 </div>
