@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Query, HTTPException, APIRouter
 
-from utils.game_services import fetch_games
+from utils.game_search_service import fetch_games
 
 
 game_recommendation_router = APIRouter()
