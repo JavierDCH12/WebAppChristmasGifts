@@ -55,7 +55,6 @@ export class AuthRegisterComponent {
 
 
 
-  // Método que se ejecuta al enviar el formulario
   onSubmit() {
     if (this.form.valid) {
       const { username, email, password } = this.form.value;

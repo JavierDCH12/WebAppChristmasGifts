@@ -51,7 +51,7 @@ private isTokenExpired(token: string): boolean {
 
 logout(): void {
   localStorage.removeItem(LOCAL_STORAGE_KEYS.TOKEN);
-  localStorage.removeItem(LOCAL_STORAGE_KEYS.USERNAME); // Limpia también el username
+  localStorage.removeItem(LOCAL_STORAGE_KEYS.USERNAME); 
 }
   
   

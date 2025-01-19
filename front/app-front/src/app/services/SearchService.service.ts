@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError, timer } from 'rxjs';
-import { catchError, retryWhen, mergeMap } from 'rxjs/operators';
+import { catchError, retryWhen, mergeMap, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 export interface Book {
@@ -28,7 +28,11 @@ export class SearchService {
   
     const url = `${this.baseUrl}/book`; 
   
+   
+
+
     return this.http.get<any>(url, { params }).pipe(
+      map(response => response.results || response.recommendations || []),
       retryWhen(errors => 
         errors.pipe(
           mergeMap((error, attempt) => {
@@ -41,6 +45,7 @@ export class SearchService {
       ),
       catchError(this.handleError)
     );
+    
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

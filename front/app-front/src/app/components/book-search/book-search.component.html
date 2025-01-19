@@ -1,36 +1,46 @@
 <div class="search-container">
-    <h2>Search Books</h2>
-    <button class="back-button" (click)="navigateToHome()">Back to Home</button>
+  <h2>Search Books</h2>
+  <button class="back-button" (click)="navigateToHome()">Back to Home</button>
 
-    <form (ngSubmit)="onSearch()" #searchForm="ngForm">
-      <div>
-        <label for="book_title">Title:</label>
-        <input type="text" id="book_title" [(ngModel)]="searchParams.book_title" name="book_title" />
-      </div>
-      <div>
-        <label for="book_author">Author:</label>
-        <input type="text" id="book_author" [(ngModel)]="searchParams.book_author" name="book_author" />
-      </div>
-      <div>
-        <label for="book_category">Category:</label>
-        <input type="text" id="book_category" [(ngModel)]="searchParams.book_category" name="book_category" />
-      </div>
-      <button type="submit" [disabled]="!searchForm.valid">Search</button>
-    </form>
-
-    <div *ngIf="isLoading">Loading...</div>
-    <div *ngIf="results?.length; else noResults">
-      <h3>Search Results:</h3>
-      <ul>
-        <li *ngFor="let book of results">
-          <strong>{{ book.title }}</strong> by {{ book.author }}
-          <p><strong>Published:</strong> {{ book.publish_year }}</p>
-          <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-        </li>
-      </ul>
+  <form (ngSubmit)="onSearch()" #searchForm="ngForm">
+    <div>
+      <label for="book_title">Title:</label>
+      <input type="text" id="book_title" [(ngModel)]="searchParams.book_title" name="book_title" />
     </div>
-    <ng-template #noResults>
-      <p>No books found.</p>
-    </ng-template>
+    <div>
+      <label for="book_author">Author:</label>
+      <input type="text" id="book_author" [(ngModel)]="searchParams.book_author" name="book_author" />
+    </div>
+    <div>
+      <label for="book_category">Category:</label>
+      <input type="text" id="book_category" [(ngModel)]="searchParams.book_category" name="book_category" />
+    </div>
+    <button type="submit" [disabled]="isLoading || !searchForm.valid">Search</button>
+  </form>
+
+  <div *ngIf="isLoading" class="loading">Loading...</div>
+
+<!-- Error message -->
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+<!-- Results -->
+<div *ngIf="results?.length; else noResults">
+  <h3>Search Results:</h3>
+  <div class="book-list">
+    <div *ngFor="let book of results" class="book-card">
+      <div class="book-header">
+        <strong class="book-title">{{ book.title }}</strong>
+        <span class="book-author">by {{ book.author }}</span>
+      </div>
+      <div class="book-details">
+        <p><strong>Category:</strong> {{ book.category.join(', ') }}</p>
+        <p><strong>Published:</strong> {{ book.publish_year }}</p>
+      </div>
+    </div>
   </div>
-  
+</div>
+
+<!-- No results template -->
+<ng-template #noResults>
+  <div class="no-results">No results found.</div>
+</ng-template>
